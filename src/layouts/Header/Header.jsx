@@ -1,6 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { faHeart, faBagShopping } from '@fortawesome/free-solid-svg-icons';
+import './Header.scss';
+import { LOGO } from '~/constants/Image';
+import { SearchIcon } from '~/components/Icons';
 const Header = () => {
   const [isShow, setIsShow] = useState(true);
   return (
@@ -9,7 +12,7 @@ const Header = () => {
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-black">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="/" className="flex items-center">
-              <img src="./images/logo.png" className="mr-3 h-6 sm:h-9" alt="Logo" />
+              <img src={LOGO.APP_LOGO} className="mr-3 h-6 sm:h-9" alt="Logo" />
             </a>
             <div className="flex items-center lg:order-2">
               <form>
@@ -19,24 +22,12 @@ const Header = () => {
                   </label>
                   <div className="relative w-full">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        className="w-5 h-5 text-white dark:text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      <SearchIcon className={'text-white dark:text-white'} />
                     </div>
                     <input
                       type="text"
                       id="simple-search"
-                      className="bg-black text-white text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-black dark:border-black dark:placeholder-white dark:text-white dark:focus:ring-black dark:focus:border-black"
+                      className="bg-black text-white text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-black dark:border-black dark:placeholder-white dark:text-white dark:focus:ring-black dark:focus:border-black sm:mr-2"
                       placeholder="Search..."
                     />
                   </div>

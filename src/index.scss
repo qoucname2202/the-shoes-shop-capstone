@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Nunito', sans-serif;
+  html,
+  body {
+    font-family: 'Inter', sans-serif;
   }
 }

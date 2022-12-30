@@ -1,63 +1,41 @@
 import React, { Fragment } from 'react';
 
-import './style.scss';
 const Navbar = () => {
-  // const [isShow, setIsShow] = useState(true);
   return (
     <Fragment>
-      <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-        <ul className="flex flex-col font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-              aria-current="page"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Company
-            </a>
-          </li>
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Marketplace
-            </a>
-          </li>
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Features
-            </a>
-          </li>
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Team
-            </a>
-          </li>
-          <li>
-            <a
-              href="#link"
-              className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
+      <nav className="bg-gray-50 dark:bg-gray-700">
+        <div className="max-w-screen-xl py-3 mx-auto xs:px-6 sm:px-6 md:px-6">
+          <div className="flex items-center">
+            <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
+              <li className="pb-2 border-b-2 border-black">
+                <a href="#link" className="text-black dark:text-white text-xl font-normal" aria-current="page">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#link" className="text-black dark:text-white text-xl font-light" aria-current="page">
+                  Men
+                </a>
+              </li>
+              <li>
+                <a href="#link" className="text-black dark:text-white text-xl font-light" aria-current="page">
+                  Woman
+                </a>
+              </li>
+              <li>
+                <a href="#link" className="text-black dark:text-white text-xl font-light" aria-current="page">
+                  Kid
+                </a>
+              </li>
+              <li>
+                <a href="#link" className="text-black dark:text-white text-xl font-light" aria-current="page">
+                  Sport
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </Fragment>
   );
 };
