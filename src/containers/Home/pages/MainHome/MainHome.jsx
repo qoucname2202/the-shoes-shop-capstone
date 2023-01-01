@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Carousel from '~/components/Carousel';
+import Paginattion from '~/components/Pagination/Paginattion';
 import ProductFeature from '../ProductFeature';
 const MainHome = () => {
   return (
@@ -12,6 +13,9 @@ const MainHome = () => {
       </div>
       <div className="container">
         <ProductFeature />
+      </div>
+      <div className="flex items-center justify-center pb-5">
+        <Paginattion />
       </div>
     </Fragment>
   );
