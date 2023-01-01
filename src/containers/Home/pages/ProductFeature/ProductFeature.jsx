@@ -1,7 +1,14 @@
 import React from 'react';
+import ProductItem from '../../components/ProductItem';
 
 const ProductFeature = () => {
-  return <div>ProductFeature</div>;
+  return (
+    <>
+      <div className="py-5 row">
+        <ProductItem />
+      </div>
+    </>
+  );
 };
 
 export default ProductFeature;

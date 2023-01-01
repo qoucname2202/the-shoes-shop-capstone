@@ -25,11 +25,11 @@ const Button = ({ to, href, disabled, children, leftIcon, onClick, ...passProps 
   }
   return (
     <Comp
-      className="flex items-center justify-center gap-3 p-3 text-sm font-medium leading-5 text-center text-white rounded-lg shadow-lg bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80"
+      className="inline-flex items-center gap-2 px-4 py-2.5 mb-2 font-medium tracking-wider text-white transition duration-300 ease-in bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 text-center rounded-lg"
       {...props}
     >
       {leftIcon}
-      <span>{children}</span>
+      {children}
     </Comp>
   );
 };
