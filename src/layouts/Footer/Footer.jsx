@@ -1,6 +1,6 @@
 import React from 'react';
 import { FacebookIcon, GithubIcon, InstagramIcon, TwitterIcon } from '~/components/Icons';
-
+import { LOGO } from '~/constants/Image';
 const Footer = () => {
   return (
     <>
@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="/home" className="flex items-center">
-                <img src="./images/logo.png" className="h-10" alt="Logo-Cybersoft" />
+                <img src={LOGO.APP_LOGO} className="h-10" alt="Logo-Cybersoft" />
               </a>
             </div>
             <div className="grid grid-cols-2 gap-5 sm:gap-6 sm:grid-cols-3">

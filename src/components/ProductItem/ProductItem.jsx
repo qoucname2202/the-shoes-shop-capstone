@@ -10,7 +10,7 @@ const ProductItem = () => {
   };
   return (
     <>
-      <div className="col-4 animate__animated animate__zoomIn animate__delay-1s">
+      <div className="col-12 col-lg-4 animate__animated animate__zoomIn animate__delay-1s md:flex md:items-center md:justify-center flex-md-column md:mb-5">
         <div className="w-full max-w-md p-6 bg-gray-700 shadow-lg rounded-xl">
           <div className="flex flex-col ">
             <div className="">
