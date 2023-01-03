@@ -6,6 +6,8 @@ const ProductFeature = () => {
     <>
       <div className="py-5 row">
         <ProductItem />
+        <ProductItem />
+        <ProductItem />
       </div>
     </>
   );

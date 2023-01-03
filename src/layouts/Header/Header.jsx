@@ -4,15 +4,16 @@ import { faHeart, faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 import { LOGO } from '~/constants/Image';
 import { SearchIcon } from '~/components/Icons';
+import { NavLink } from 'react-router-dom';
 const Header = () => {
   const [isShow, setIsShow] = useState(true);
   return (
     <>
       <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-black">
-          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+          <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
             <a href="/" className="flex items-center">
-              <img src={LOGO.APP_LOGO} className="mr-3 h-6 sm:h-9" alt="Logo" />
+              <img src={LOGO.APP_LOGO} className="h-6 mr-3 sm:h-9" alt="Logo" />
             </a>
             <div className="flex items-center lg:order-2">
               <form>
@@ -27,31 +28,32 @@ const Header = () => {
                     <input
                       type="text"
                       id="simple-search"
+                      autoComplete="off"
                       className="bg-black text-white text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5  dark:bg-black dark:border-black dark:placeholder-white dark:text-white dark:focus:ring-black dark:focus:border-black sm:mr-2"
                       placeholder="Search..."
                     />
                   </div>
                 </div>
               </form>
-              <a href="#link" className="text-center text-black hover:text-primary transition relative mr-6">
+              <a href="#link" className="relative mr-6 text-center text-black transition hover:text-primary">
                 <div className="text-2xl">
-                  <FontAwesomeIcon icon={faHeart} className="text-red-600" />
+                  <FontAwesomeIcon icon={faHeart} className="text-white" />
                 </div>
-                <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">
+                <div className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-600 rounded-full -right-3 -top-1">
                   2
                 </div>
               </a>
-              <a href="#link" className="text-center text-white hover:text-primary transition relative mr-6">
+              <a href="#link" className="relative mr-6 text-center text-white transition hover:text-primary">
                 <div className="text-2xl">
                   <FontAwesomeIcon icon={faBagShopping} />
                 </div>
-                <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">
+                <div className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-600 rounded-full -right-3 -top-1">
                   12
                 </div>
               </a>
               <div className="relative">
                 <img
-                  className="w-10 h-10 rounded-full object-cover cursor-pointer"
+                  className="object-cover w-10 h-10 rounded-full cursor-pointer"
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                   onClick={() => {
@@ -67,32 +69,32 @@ const Header = () => {
                       : 'z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 absolute right-2'
                   }
                 >
-                  <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
-                    <div>Bonnie Green</div>
-                    <div className="font-medium truncate">name@flowbite.com</div>
+                  <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>Duong Nam</div>
+                    <div className="font-medium truncate">user1@gmail.com</div>
                   </div>
                   <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
                     <li>
-                      <a
-                        href="#link"
-                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      <NavLink
+                        to={'/signin'}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-purple-600 dark:hover:text-white"
                       >
-                        Login
-                      </a>
+                        SignIn
+                      </NavLink>
                     </li>
                     <li>
-                      <a
-                        href="#link"
-                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      <NavLink
+                        to={'/signup'}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Register
-                      </a>
+                        SignUp
+                      </NavLink>
                     </li>
                   </ul>
                   <div className="py-1">
                     <a
                       href="#link"
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Sign out
                     </a>

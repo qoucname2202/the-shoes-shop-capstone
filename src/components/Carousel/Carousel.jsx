@@ -1,6 +1,7 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import AnimationText from '../AnimationText';
 import Button from '../Button';
 import Fancybox from '../ui/Fancybox';
 import './Carousel.scss';
@@ -22,7 +23,7 @@ const Carousel = () => {
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={2} aria-label="Slide 3" />
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={3} aria-label="Slide 4" />
         </div>
-        <div className="relative w-full overflow-hidden bg-gray-500 carousel-inner">
+        <div className="relative w-full overflow-hidden bg-gray-700 carousel-inner">
           <div className="relative float-left w-full carousel-item active">
             <div className="flex items-center justify-center gap-5">
               <Fancybox>
@@ -35,8 +36,10 @@ const Carousel = () => {
                 </a>
               </Fancybox>
               <div className="">
-                <h3 className="text-3xl font-light">Adidas Prophere Black White</h3>
-                <p className="mt-2 mb-5">The midsole contains 20% more Boost for an amplified Boost feeling.</p>
+                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
+                  The midsole contains 20% more Boost for an amplified Boost feeling.
+                </p>
                 <Button>
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
@@ -56,8 +59,10 @@ const Carousel = () => {
                 </a>
               </Fancybox>
               <div className="">
-                <h3 className="text-3xl font-light">Adidas Prophere Black White</h3>
-                <p className="mt-2 mb-5">The midsole contains 20% more Boost for an amplified Boost feeling.</p>
+                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
+                  The midsole contains 20% more Boost for an amplified Boost feeling.
+                </p>
                 <Button>
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
@@ -77,8 +82,10 @@ const Carousel = () => {
                 </a>
               </Fancybox>
               <div className="">
-                <h3 className="text-3xl font-light">Adidas Prophere Black White</h3>
-                <p className="mt-2 mb-5">The midsole contains 20% more Boost for an amplified Boost feeling.</p>
+                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
+                  The midsole contains 20% more Boost for an amplified Boost feeling.
+                </p>
                 <Button>
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
@@ -98,8 +105,10 @@ const Carousel = () => {
                 </a>
               </Fancybox>
               <div className="">
-                <h3 className="text-3xl font-light">Adidas Prophere Black White</h3>
-                <p className="mt-2 mb-5">The midsole contains 20% more Boost for an amplified Boost feeling.</p>
+                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
+                  The midsole contains 20% more Boost for an amplified Boost feeling.
+                </p>
                 <Button>
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now

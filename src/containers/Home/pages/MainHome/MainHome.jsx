@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Carousel from '~/components/Carousel';
 import Paginattion from '~/components/Pagination/Paginattion';
 import ProductFeature from '../ProductFeature';
+
 const MainHome = () => {
   return (
     <Fragment>

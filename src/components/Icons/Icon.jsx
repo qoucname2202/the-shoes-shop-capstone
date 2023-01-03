@@ -83,16 +83,6 @@ export const SearchIcon = ({ width = '1.25rem', height = '1.25rem', className })
   </svg>
 );
 
-export const FacebookIcon = ({ width = '1.25rem', height = '1.25rem', className }) => (
-  <svg className={className} width={width} height={height} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path
-      fillRule="evenodd"
-      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
-
 export const InstagramIcon = ({ width = '1.25rem', height = '1.25rem', className }) => (
   <svg className={className} width={width} height={height} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path
@@ -391,5 +381,14 @@ export const HiddenIcon = ({ width = '1.5rem', height = '1.5rem', className }) =
     <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
     <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
     <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+  </svg>
+);
+
+export const FacebookIcon = ({ width = '0.875rem', height = '0.875rem', className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className={className} width={width} height={height}>
+    <path
+      fill="currentColor"
+      d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+    />
   </svg>
 );

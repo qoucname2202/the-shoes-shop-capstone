@@ -10,7 +10,7 @@ const ProductItem = () => {
   };
   return (
     <>
-      <div className="col-4">
+      <div className="col-4 animate__animated animate__zoomIn animate__delay-1s">
         <div className="w-full max-w-md p-6 bg-gray-700 shadow-lg rounded-xl">
           <div className="flex flex-col ">
             <div className="">
@@ -61,7 +61,7 @@ const ProductItem = () => {
                 </div>
                 <div className="flex justify-between mt-2 space-x-2 text-sm font-medium">
                   <div className="mt-1 text-2xl font-semibold text-white md:text-[15px] lg:text-2xl">$240.00</div>
-                  <Button>
+                  <Button name="animate-button">
                     <FontAwesomeIcon icon={faShoppingCart} className=""></FontAwesomeIcon>
                     Add Cart
                   </Button>
