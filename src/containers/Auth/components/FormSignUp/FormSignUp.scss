@@ -1,0 +1,25 @@
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: #eee;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 1rem;
+  box-shadow: 0 0 0 4px #eee;
+  transition: all 0.25s linear;
+}
+
+.radio-input + .radio-label {
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px #9e9e9e;
+  background-color: #9e9e9e;
+}
+
+.radio-input:checked + .radio-label {
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px #7e3af2;
+  background-color: #7e3af2;
+}

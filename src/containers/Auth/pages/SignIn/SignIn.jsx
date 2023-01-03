@@ -13,10 +13,7 @@ const SignIn = () => {
     },
     validationSchema: Yup.object().shape({
       email: Yup.string().required('Email is can not blank').email('Email is invalid'),
-      password: Yup.string()
-        .min(6, 'Password must be at least 6 characters')
-        .max(8, 'Password must be at highest 8 characters')
-        .required('Password is can not blank'),
+      password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is can not blank'),
     }),
     onSubmit: (values) => {
       console.log(values);
