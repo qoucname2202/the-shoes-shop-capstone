@@ -4,6 +4,7 @@ const routes = {
   detail: '/detail/:id',
   signin: '/signin',
   signup: '/signup',
+  cart: '/cart',
   forgotPass: '/forgot-password',
   notFound: '*',
 };
