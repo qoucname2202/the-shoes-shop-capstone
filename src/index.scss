@@ -8,3 +8,10 @@
     font-family: 'Inter', sans-serif;
   }
 }
+.scroll-to-top {
+  border-radius: 19px !important;
+  background-color: #6c2bd9 !important;
+  & > svg {
+    display: inline-block !important;
+  }
+}
