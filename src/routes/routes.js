@@ -7,6 +7,7 @@ const LayoutSignUp = React.lazy(() => import('~/containers/Auth/pages/SignUp'));
 const LayoutForgotPass = React.lazy(() => import('~/containers/Auth/pages/ForgotPassword'));
 const LayoutDetailProd = React.lazy(() => import('~/containers/Detail/pages/MainDetail'));
 const LayoutCart = React.lazy(() => import('~/containers/Cart/pages/MainCart'));
+const LayoutProfile = React.lazy(() => import('~/containers/Profile/pages/ProfileMain'));
 const publicRoute = [
   {
     path: config.routes.home,
@@ -27,6 +28,10 @@ const publicRoute = [
   {
     path: config.routes.cart,
     component: LayoutCart,
+  },
+  {
+    path: config.routes.profile,
+    component: LayoutProfile,
   },
   {
     path: config.routes.forgotPass,
