@@ -5,6 +5,7 @@ const routes = {
   signin: '/signin',
   signup: '/signup',
   cart: '/cart',
+  search: '/search',
   forgotPass: '/forgot-password',
   notFound: '*',
 };

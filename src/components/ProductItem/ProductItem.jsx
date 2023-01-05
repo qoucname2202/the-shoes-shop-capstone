@@ -63,7 +63,7 @@ const ProductItem = () => {
                   <div className="mt-1 text-2xl font-semibold text-white md:text-[15px] lg:text-2xl">$240.00</div>
                   <Button name="animate-button">
                     <FontAwesomeIcon icon={faShoppingCart} className=""></FontAwesomeIcon>
-                    Add Cart
+                    Buy now
                   </Button>
                 </div>
               </div>
