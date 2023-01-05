@@ -9,6 +9,7 @@ const LayoutDetailProd = React.lazy(() => import('~/containers/Detail/pages/Main
 const LayoutCart = React.lazy(() => import('~/containers/Cart/pages/MainCart'));
 const LayoutProfile = React.lazy(() => import('~/containers/Profile/pages/ProfileMain'));
 const LayoutSearch = React.lazy(() => import('~/containers/Search/page/MainSearch'));
+const LayoutFavouriteProd = React.lazy(() => import('~/containers/Favourite/pages/MainFavourite'));
 const publicRoute = [
   {
     path: config.routes.home,
@@ -37,6 +38,10 @@ const publicRoute = [
   {
     path: config.routes.search,
     component: LayoutSearch,
+  },
+  {
+    path: config.routes.favourite,
+    component: LayoutFavouriteProd,
   },
   {
     path: config.routes.forgotPass,

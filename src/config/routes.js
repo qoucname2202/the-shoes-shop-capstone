@@ -6,6 +6,7 @@ const routes = {
   signup: '/signup',
   cart: '/cart',
   search: '/search',
+  favourite: '/favourite',
   forgotPass: '/forgot-password',
   notFound: '*',
 };
