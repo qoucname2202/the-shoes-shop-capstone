@@ -4,8 +4,11 @@ import { BG } from '~/constants/Image';
 import FormSignIn from '../../components/FormSignIn';
 import './SignIn.scss';
 import * as Yup from 'yup';
+import { signInUserAPI } from '~/middleware/userAction';
+import { useDispatch } from 'react-redux';
 const SignIn = () => {
   const BgLogin = BG.LOGIN_BG;
+  const dispatch = useDispatch();
   const frmLogin = useFormik({
     initialValues: {
       email: '',
@@ -16,7 +19,8 @@ const SignIn = () => {
       password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is can not blank'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      const asyncSignInAction = signInUserAPI(values);
+      dispatch(asyncSignInAction);
     },
   });
   return (

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { isExpired } from 'react-jwt';
 import Notify from '~/components/ui/Notify';
 import { history } from '../../index';
-export const USER_LOGIN = 'userLogin';
+export const USER_SIGNIN = 'userSignIn';
 export const TOKEN = 'accessToken';
 export const TOKEN_CYBER =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzNUUiLCJIZXRIYW5TdHJpbmciOiIzMS8wNS8yMDIzIiwiSGV0SGFuVGltZSI6IjE2ODU0OTEyMDAwMDAiLCJuYmYiOjE2NTczODYwMDAsImV4cCI6MTY4NTYzODgwMH0.LWlPoCoXPHgp2U6FijTqXvKFt7ENvY9Tyn9ux-bVlXo';
@@ -110,7 +110,7 @@ http.interceptors.response.use(
           }}
         />;
         clearStore(TOKEN);
-        clearStore(USER_LOGIN);
+        clearStore(USER_SIGNIN);
         //Chuyển hướng trang dạng f5
         window.location.href = '/login';
       }
