@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from '~/components/InputField';
 import './FormSignUp.scss';
 const FormSignUp = (props) => {
-  const { onSubmit } = props;
+  const { onSubmit, frmForm } = props;
   return (
     <>
       <form className="space-y-4 md:space-y-6" action="#" id="login-form" onSubmit={onSubmit}>
@@ -13,27 +13,27 @@ const FormSignUp = (props) => {
             type="email"
             label="email"
             placeholder="Eg. name@company.com"
-            // onChange={frmForm.handleChange}
-            // onBlur={frmForm.handleBlur}
+            onChange={frmForm.handleChange}
+            onBlur={frmForm.handleBlur}
           />
-          {/* {frmForm.errors.email && frmForm.touched.email && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.email}</p>
-          )} */}
         </div>
-        {/* UserName input field */}
+        {frmForm.errors.email && frmForm.touched.email && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.email}</p>
+        )}
+        {/* Name input field */}
         <div>
           <InputField
-            name="userName"
+            name="name"
             type="text"
-            label="userName"
+            label="name"
             placeholder="Eg. Nguyen Van A"
-            // onChange={frmForm.handleChange}
-            // onBlur={frmForm.handleBlur}
+            onChange={frmForm.handleChange}
+            onBlur={frmForm.handleBlur}
           />
-          {/* {frmForm.errors.name && frmForm.touched.name && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.name}</p>
-          )} */}
         </div>
+        {frmForm.errors.name && frmForm.touched.name && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.name}</p>
+        )}
         {/* Phone number input field */}
         <div>
           <InputField
@@ -41,13 +41,13 @@ const FormSignUp = (props) => {
             type="text"
             label="phone"
             placeholder="Eg. 0917565841"
-            // onChange={frmForm.handleChange}
-            // onBlur={frmForm.handleBlur}
+            onChange={frmForm.handleChange}
+            onBlur={frmForm.handleBlur}
           />
-          {/* {frmForm.errors.name && frmForm.touched.name && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.name}</p>
-          )} */}
         </div>
+        {frmForm.errors.phone && frmForm.touched.phone && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.phone}</p>
+        )}
         {/* Password input field */}
         <div className="relative">
           <InputField
@@ -55,13 +55,13 @@ const FormSignUp = (props) => {
             type="password"
             label="password"
             placeholder="••••••••"
-            // onChange={frmForm.handleChange}
-            // onBlur={frmForm.handleBlur}
+            onChange={frmForm.handleChange}
+            onBlur={frmForm.handleBlur}
           />
-          {/* {frmForm.errors.password && frmForm.touched.password && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.password}</p>
-          )} */}
         </div>
+        {frmForm.errors.password && frmForm.touched.password && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.password}</p>
+        )}
         {/* ConfirmPassword input field */}
         <div className="relative">
           <InputField
@@ -69,25 +69,40 @@ const FormSignUp = (props) => {
             type="password"
             label="confirmPassword"
             placeholder="••••••••"
-            // onChange={frmForm.handleChange}
-            // onBlur={frmForm.handleBlur}
+            onChange={frmForm.handleChange}
+            onBlur={frmForm.handleBlur}
           />
-          {/* {frmForm.errors.confirmPassword && frmForm.touched.confirmPassword && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.confirmPassword}</p>
-          )} */}
         </div>
+        {frmForm.errors.confirmPassword && frmForm.touched.confirmPassword && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.confirmPassword}</p>
+        )}
         <div>
           <label htmlFor="gender" className="block mb-3 text-sm font-medium text-gray-900 dark:text-white">
             Gender
           </label>
           <div className="flex gap-4">
             <div className="flex justify-center items-center">
-              <input type="radio" id="male" className="radio-input" name="gender" />
+              <input
+                type="radio"
+                id="male"
+                className="radio-input"
+                name="gender"
+                value={true}
+                defaultChecked
+                onChange={frmForm.handleChange}
+              />
               <label htmlFor="male" className="radio-label" />
               <span className="text-sm font-medium">Male</span>
             </div>
             <div className="flex justify-center items-center">
-              <input type="radio" id="fmale" className="radio-input" name="gender" />
+              <input
+                type="radio"
+                id="fmale"
+                className="radio-input"
+                name="gender"
+                value={false}
+                onChange={frmForm.handleChange}
+              />
               <label htmlFor="fmale" className="radio-label" />
               <span className="text-sm font-medium">Female</span>
             </div>

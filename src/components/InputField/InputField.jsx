@@ -27,7 +27,7 @@ const InputField = (props) => {
         name === 'newPassword' ||
         name === 'confirmNewPassword' ||
         name === 'currentPassword') && (
-        <span className="absolute inline-flex items-center text-gray-400 right-4 bottom-2" onClick={handleHidePassword}>
+        <span className="absolute inline-flex items-center text-gray-400 right-2 bottom-2" onClick={handleHidePassword}>
           {showPassword ? <HiddenIcon /> : <ShowIcon />}
         </span>
       )}

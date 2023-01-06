@@ -11,7 +11,9 @@ const userReducer = createSlice({
   initialState,
   reducers: {
     signInAction: (state, action) => {},
-    signUpAction: (state, action) => {},
+    signUpAction: (state, action) => {
+      state.newUser = action.payload;
+    },
     getUserProfileAction: (state, action) => {},
   },
 });

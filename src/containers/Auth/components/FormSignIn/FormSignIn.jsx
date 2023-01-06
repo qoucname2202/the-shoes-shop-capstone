@@ -13,14 +13,15 @@ const FormSignIn = (props) => {
             name="email"
             type="email"
             label="email"
+            autoFocus
             placeholder="name@company.com"
             onChange={frmForm.handleChange}
             onBlur={frmForm.handleBlur}
           />
-          {frmForm.errors.email && frmForm.touched.email && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.email}</p>
-          )}
         </div>
+        {frmForm.errors.email && frmForm.touched.email && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.email}</p>
+        )}
         <div className="relative">
           <InputField
             name="password"
@@ -30,12 +31,12 @@ const FormSignIn = (props) => {
             onChange={frmForm.handleChange}
             onBlur={frmForm.handleBlur}
           />
-          {frmForm.errors.password && frmForm.touched.password && (
-            <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.password}</p>
-          )}
         </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-start">
+        {frmForm.errors.password && frmForm.touched.password && (
+          <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.password}</p>
+        )}
+        <div className="text-right mt-4">
+          {/* <div className="flex items-start">
             <div className="flex items-center h-5">
               <input
                 id="remember"
@@ -49,7 +50,7 @@ const FormSignIn = (props) => {
                 Remember me
               </label>
             </div>
-          </div>
+          </div> */}
           <a href="#link" className="text-sm font-medium text-gray-400 hover:text-purple-600 dark:text-gray-400">
             Forgot password?
           </a>
