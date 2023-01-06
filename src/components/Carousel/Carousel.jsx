@@ -1,12 +1,14 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AnimationText from '../AnimationText';
 import Button from '../Button';
 import Fancybox from '../ui/Fancybox';
 import './Carousel.scss';
 
 const Carousel = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div id="carouselExampleCaptions" className="relative carousel slide" data-bs-ride="carousel">
@@ -30,17 +32,21 @@ const Carousel = () => {
                 <a
                   data-fancybox="gallery"
                   href="https://shop.cyberlearn.vn/images/adidas-prophere.png"
-                  data-caption="Adidas Prophere Black White"
+                  data-caption="Adidas Prophere"
                 >
-                  <img src="https://shop.cyberlearn.vn/images/adidas-prophere.png" className="" alt="" />
+                  <img src="https://shop.cyberlearn.vn/images/adidas-prophere.png" className="" alt="adidas-prophere" />
                 </a>
               </Fancybox>
               <div className="">
-                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <AnimationText>Adidas Prophere</AnimationText>
                 <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
                   The midsole contains 20% more Boost for an amplified Boost feeling.
                 </p>
-                <Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/detail/${1}`);
+                  }}
+                >
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
                 </Button>
@@ -52,10 +58,14 @@ const Carousel = () => {
               <Fancybox>
                 <a
                   data-fancybox="gallery"
-                  href="https://shop.cyberlearn.vn/images/nike-air-max-97.png"
+                  href="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
                   data-caption="Adidas Prophere Black White"
                 >
-                  <img src="https://shop.cyberlearn.vn/images/nike-air-max-97.png" className="" alt="" />
+                  <img
+                    src="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
+                    className=""
+                    alt="adidas-prophere-black-white"
+                  />
                 </a>
               </Fancybox>
               <div className="">
@@ -63,7 +73,11 @@ const Carousel = () => {
                 <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
                   The midsole contains 20% more Boost for an amplified Boost feeling.
                 </p>
-                <Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/detail/${2}`);
+                  }}
+                >
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
                 </Button>
@@ -75,18 +89,26 @@ const Carousel = () => {
               <Fancybox>
                 <a
                   data-fancybox="gallery"
-                  href="https://shop.cyberlearn.vn/images/adidas-prophere-customize.png"
+                  href="https://shop.cyberlearn.vn/images/adidas-swift-run.png"
                   data-caption="Adidas Prophere Black White"
                 >
-                  <img src="https://shop.cyberlearn.vn/images/adidas-prophere-customize.png" className="" alt="" />
+                  <img
+                    src="https://shop.cyberlearn.vn/images/adidas-swift-run.png"
+                    className=""
+                    alt="adidas-swift-run"
+                  />
                 </a>
               </Fancybox>
               <div className="">
-                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <AnimationText>Adidas Swift Run</AnimationText>
                 <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
                   The midsole contains 20% more Boost for an amplified Boost feeling.
                 </p>
-                <Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/detail/${5}`);
+                  }}
+                >
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
                 </Button>
@@ -101,15 +123,23 @@ const Carousel = () => {
                   href="https://shop.cyberlearn.vn/images/adidas-super-star-red.png"
                   data-caption="Adidas Prophere Black White"
                 >
-                  <img src="https://shop.cyberlearn.vn/images/adidas-super-star-red.png" className="" alt="" />
+                  <img
+                    src="https://shop.cyberlearn.vn/images/adidas-super-star-red.png"
+                    className=""
+                    alt="adidas-super-star-red"
+                  />
                 </a>
               </Fancybox>
               <div className="">
-                <AnimationText>Adidas Prophere Black White</AnimationText>
+                <AnimationText>Adidas Super Star Red</AnimationText>
                 <p className="mt-2 mb-5 text-white animate__animated animate__zoomIn animate__delay-2s">
                   The midsole contains 20% more Boost for an amplified Boost feeling.
                 </p>
-                <Button>
+                <Button
+                  onClick={() => {
+                    navigate(`/detail/${4}`);
+                  }}
+                >
                   <FontAwesomeIcon icon={faShoppingCart} />
                   Buy now
                 </Button>

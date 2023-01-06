@@ -6,19 +6,27 @@ const initialState = {
   favouriteProductList: [],
   searchProductList: [],
   categoryList: [],
+  storeList: [],
 };
 
 const productReducer = createSlice({
   name: 'productReducer',
   initialState,
   reducers: {
-    getProductListAction: (state, action) => {},
+    getProductListAction: (state, action) => {
+      state.productList = action.payload;
+    },
     getProductDetailAction: (state, action) => {},
     getFavoriteProductAction: (state, action) => {},
     getSearchProductListAction: (state, action) => {},
     sortingSearchProduct: (state, action) => {},
-    getAllCategoryAction: (state, action) => {},
+    getAllCategoryAction: (state, action) => {
+      state.categoryList = action.payload;
+    },
     getProductByCategoryAction: (state, action) => {},
+    getAllStoreAction: (state, action) => {
+      state.storeList = action.payload;
+    },
   },
 });
 
@@ -30,6 +38,7 @@ export const {
   sortingSearchProduct,
   getAllCategoryAction,
   getProductByCategoryAction,
+  getAllStoreAction,
 } = productReducer.actions;
 
 export default productReducer.reducer;

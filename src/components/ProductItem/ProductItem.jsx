@@ -4,7 +4,10 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { HeartIcon, StarIcon } from '~/components/Icons';
 import Fancybox from '~/components/ui/Fancybox';
 import Button from '~/components/Button';
-const ProductItem = () => {
+import { useNavigate } from 'react-router-dom';
+const ProductItem = (props) => {
+  let prod = props.prod;
+  const navigate = useNavigate();
   const randomStar = (min = 3, max = 6) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
@@ -22,16 +25,8 @@ const ProductItem = () => {
                   </button>
                 </div>
                 <Fancybox>
-                  <a
-                    data-fancybox="gallery"
-                    href="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
-                    data-caption="Adidas Prophere Black White"
-                  >
-                    <img
-                      src="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
-                      alt="addias"
-                      className="object-fill w-full rounded-2xl"
-                    />
+                  <a data-fancybox="gallery" href={prod?.image} data-caption="Adidas Prophere Black White">
+                    <img src={prod?.image} alt="addias" className="object-fill w-full rounded-2xl" />
                   </a>
                 </Fancybox>
               </div>
@@ -39,7 +34,7 @@ const ProductItem = () => {
                 <div className="flex flex-wrap ">
                   <div className="flex items-center justify-between w-full min-w-0 ">
                     <h2 className="mr-auto text-2xl text-gray-200 truncate cursor-pointer hover:text-purple-500 ">
-                      Adidas Prophere Black White
+                      {prod?.name}
                     </h2>
                   </div>
                 </div>
@@ -60,8 +55,13 @@ const ProductItem = () => {
                   )}
                 </div>
                 <div className="flex justify-between mt-2 space-x-2 text-sm font-medium">
-                  <div className="mt-1 text-2xl font-semibold text-white md:text-[15px] lg:text-2xl">$240.00</div>
-                  <Button name="animate-button">
+                  <div className="mt-1 text-2xl font-semibold text-white md:text-[15px] lg:text-2xl">{`$${prod?.price}.00`}</div>
+                  <Button
+                    name="animate-button"
+                    onClick={() => {
+                      navigate(`/detail/${prod.id}`);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faShoppingCart} className=""></FontAwesomeIcon>
                     Buy now
                   </Button>

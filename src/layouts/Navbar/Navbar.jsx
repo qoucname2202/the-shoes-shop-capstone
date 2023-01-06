@@ -1,6 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategoriesAPI } from '~/middleware/productAction';
 
 const Navbar = () => {
+  const { categoryList } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const asyncCategoryAction = getAllCategoriesAPI();
+    dispatch(asyncCategoryAction);
+  }, []);
   return (
     <Fragment>
       <nav className="bg-gray-50 dark:bg-gray-700">
@@ -9,29 +17,24 @@ const Navbar = () => {
             <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
               <li className="pb-2 border-b-2 border-purple-600">
                 <a href="#link" className="text-xl font-normal text-black dark:text-white" aria-current="page">
-                  Home
+                  HOME
                 </a>
               </li>
-              <li>
-                <a href="#link" className="text-xl font-light text-black dark:text-white" aria-current="page">
-                  Men
-                </a>
-              </li>
-              <li>
-                <a href="#link" className="text-xl font-light text-black dark:text-white" aria-current="page">
-                  Woman
-                </a>
-              </li>
-              <li>
-                <a href="#link" className="text-xl font-light text-black dark:text-white" aria-current="page">
-                  Kid
-                </a>
-              </li>
-              <li>
-                <a href="#link" className="text-xl font-light text-black dark:text-white" aria-current="page">
-                  Sport
-                </a>
-              </li>
+              {categoryList && categoryList.length > 0
+                ? categoryList.map((item) => {
+                    return (
+                      <li className="pb-2 hover:text-purple-600" key={item.id}>
+                        <a
+                          href="#link"
+                          className="text-xl font-normal hover:text-purple-600 text-black dark:text-white"
+                          aria-current="page"
+                        >
+                          {item?.category}
+                        </a>
+                      </li>
+                    );
+                  })
+                : null}
             </ul>
           </div>
         </div>

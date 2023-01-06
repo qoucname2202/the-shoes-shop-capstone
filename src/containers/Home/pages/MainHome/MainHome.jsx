@@ -1,9 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '~/components/Carousel';
 import Paginattion from '~/components/Pagination/Paginattion';
+import { getProductAPI } from '~/middleware/productAction';
 import ProductFeature from '../ProductFeature';
 
 const MainHome = () => {
+  const { productList } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const asyncProductAction = getProductAPI();
+    dispatch(asyncProductAction);
+  }, []);
   return (
     <Fragment>
       <Carousel />
@@ -13,7 +21,7 @@ const MainHome = () => {
             Product Feature
           </h1>
         </div>
-        <ProductFeature />
+        <ProductFeature productList={productList} />
         <div className="flex items-center justify-center pb-5">
           <Paginattion />
         </div>
