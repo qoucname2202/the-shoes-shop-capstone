@@ -1,12 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { faHeart, faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 import { LOGO } from '~/constants/Image';
 import { SearchIcon } from '~/components/Icons';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { clearStore, eraseCookie, TOKEN, USER_SIGNIN } from '~/services/Utils/config';
 const Header = () => {
   const [isShow, setIsShow] = useState(true);
+  const { userSignIn } = useSelector((state) => state.userReducer);
+  const handleSignOut = () => {
+    clearStore(USER_SIGNIN);
+    eraseCookie(TOKEN);
+    window.location.reload();
+  };
   return (
     <>
       <header>
@@ -52,15 +60,17 @@ const Header = () => {
                 </div>
               </a>
               <div className="relative">
-                <img
-                  className="object-cover w-10 h-10 rounded-full cursor-pointer"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                  alt=""
-                  onClick={() => {
-                    setIsShow(!isShow);
-                  }}
-                />
-                <span className="top-0 left-7 absolute  w-3.5 h-3.5 bg-blue-600 border-2 border-white dark:border-gray-800 rounded-full" />
+                <div className="flex items-center">
+                  <img
+                    className="object-cover w-10 h-10 rounded-full cursor-pointer"
+                    src={LOGO.AVATAR}
+                    alt="avatar"
+                    onClick={() => {
+                      setIsShow(!isShow);
+                    }}
+                  />
+                  <span className="text-gray-200">Hello {userSignIn?.email}</span>
+                </div>
                 <div
                   id="userDropdown"
                   className={
@@ -70,35 +80,43 @@ const Header = () => {
                   }
                 >
                   <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                    <div>Duong Nam</div>
-                    <div className="font-medium truncate">user1@gmail.com</div>
+                    <div className="font-medium truncate">{userSignIn?.email}</div>
                   </div>
-                  <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-                    <li>
-                      <NavLink
-                        to={'/signin'}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-purple-600 dark:hover:text-white"
+                  {userSignIn?.accessToken ? (
+                    <div className="py-1">
+                      <a
+                        href="#link"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        onClick={handleSignOut}
                       >
-                        SignIn
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to={'/signup'}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        SignUp
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a
-                      href="#link"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Sign out
-                    </a>
-                  </div>
+                        Sign out
+                      </a>
+                    </div>
+                  ) : (
+                    <Fragment>
+                      <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                        <div className="font-medium truncate">Hello Cybersoft</div>
+                      </div>
+                      <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                        <li>
+                          <NavLink
+                            to={'/signin'}
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-purple-600 dark:hover:text-white"
+                          >
+                            SignIn
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            to={'/signup'}
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            SignUp
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </Fragment>
+                  )}
                 </div>
               </div>
             </div>

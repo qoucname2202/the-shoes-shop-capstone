@@ -27,14 +27,7 @@ const publicRoute = [
     path: config.routes.detail,
     component: LayoutDetailProd,
   },
-  {
-    path: config.routes.cart,
-    component: LayoutCart,
-  },
-  {
-    path: config.routes.profile,
-    component: LayoutProfile,
-  },
+
   {
     path: config.routes.search,
     component: LayoutSearch,
@@ -54,6 +47,15 @@ const publicRoute = [
   },
 ];
 
-const privateRoute = [];
+const privateRoute = [
+  {
+    path: config.routes.profile,
+    component: LayoutProfile,
+  },
+  {
+    path: config.routes.cart,
+    component: LayoutCart,
+  },
+];
 
 export { publicRoute, privateRoute };

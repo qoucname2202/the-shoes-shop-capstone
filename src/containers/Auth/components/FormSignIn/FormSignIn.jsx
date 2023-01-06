@@ -1,10 +1,8 @@
-import React from 'react';
-import { FacebookIcon } from '~/components/Icons';
+import React, { Fragment } from 'react';
 import InputField from '~/components/InputField';
-import ButtonFacebook from '../ButtonFacebook';
-
 const FormSignIn = (props) => {
   const { onSubmit, frmForm } = props;
+
   return (
     <>
       <form className="space-y-4 md:space-y-6" action="#" id="login-form" onSubmit={onSubmit}>
@@ -61,21 +59,6 @@ const FormSignIn = (props) => {
         >
           Sign in
         </button>
-        <div>
-          <div className="flex items-center my-3 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-            <p className="mx-4 mb-0 font-semibold text-center">OR</p>
-          </div>
-          <ButtonFacebook>
-            <FacebookIcon className={'mr-2'} />
-            Continue with Facebook
-          </ButtonFacebook>
-        </div>
-        <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400">
-          Don’t have an account yet?{' '}
-          <a href="#link" className="font-medium text-gray-600 hover:text-purple-600 dark:text-gray-500">
-            Sign up
-          </a>
-        </p>
       </form>
     </>
   );
