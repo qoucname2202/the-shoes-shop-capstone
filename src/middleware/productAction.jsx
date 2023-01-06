@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { getAllCategoryAction, getAllStoreAction, getProductListAction } from '~/redux/reducer/productReducer';
+import {
+  getAllCategoryAction,
+  getAllStoreAction,
+  getProductDetailAction,
+  getProductListAction,
+} from '~/redux/reducer/productReducer';
+import { http } from '~/services/Utils/config';
 // Get Product
 export const getProductAPI = () => {
   return async (dispatch) => {
@@ -21,6 +27,10 @@ export const getProductAPI = () => {
 export const getProductDetailAPI = (idProd) => {
   return async (dispatch) => {
     try {
+      const res = await http.get(`/api/Product/getbyid?id=${idProd}`);
+      const data = res.data.content;
+      const action = getProductDetailAction(data);
+      dispatch(action);
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { isExpired } from 'react-jwt';
-import Notify from '~/components/ui/Notify';
 import { history } from '../../index';
 export const USER_SIGNIN = 'userSignIn';
 export const TOKEN = 'accessToken';
@@ -87,28 +86,14 @@ http.interceptors.response.use(
     //Bắt lỗi 400 hoặc 404
     if (err.response?.status === 400 || err.response?.status === 404) {
       //Lỗi do tham số => backend trả về 400 hoặc 404 mình sẽ xử lý
-      <Notify
-        status={{
-          loading: false,
-          error: true,
-          success: false,
-          message: 'Tham số không hợp lệ !',
-        }}
-      />;
+      alert('tham số không hợp lệ!');
       history.push('/');
     }
     if (err.response?.status === 401 || err.response.status === 403) {
       const isMyTokenExpired = isExpired(getStorage(TOKEN));
       //token hết hạn
       if (isMyTokenExpired) {
-        <Notify
-          status={{
-            loading: false,
-            error: true,
-            success: false,
-            message: 'Hết phiên đăng nhập yêu cầu đăng nhập lại !',
-          }}
-        />;
+        alert('Hết phiên đăng nhập yêu cầu đăng nhập lại!');
         clearStore(TOKEN);
         clearStore(USER_SIGNIN);
         //Chuyển hướng trang dạng f5

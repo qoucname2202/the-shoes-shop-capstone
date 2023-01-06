@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Paginattion from '~/components/Pagination/Paginattion';
+import { getProductDetailAPI } from '~/middleware/productAction';
 import PreviewProduct from '../PreviewProduct';
 import RelateProduct from '../RealateProduct/RelateProduct';
 
 const MainDetail = () => {
+  const { productDetail } = useSelector((state) => state.productReducer);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const asyncProductById = getProductDetailAPI(id);
+    dispatch(asyncProductById);
+  }, [id]);
   return (
     <div className="container">
       <section className="w-11/2 md:4/5 m-auto flex items-center py-5">
-        <PreviewProduct />
+        <PreviewProduct productDetail={productDetail} />
       </section>
       <div className="container">
         <div className="flex items-center justify-center">
@@ -15,7 +25,7 @@ const MainDetail = () => {
             Product Feature
           </h1>
         </div>
-        <RelateProduct />
+        <RelateProduct productDetail={productDetail} />
         <div className="flex items-center justify-center pb-5">
           <Paginattion />
         </div>
