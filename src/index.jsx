@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Provider } from 'react-redux';
+import { store } from './redux/configStore';
 // Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 // Bootstrap Bundle JS
@@ -13,9 +16,13 @@ import './index.scss';
 
 import App from './App';
 
+export const history = createBrowserHistory();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <HistoryRouter history={history}>
+      <App />
+    </HistoryRouter>
+  </Provider>,
 );
