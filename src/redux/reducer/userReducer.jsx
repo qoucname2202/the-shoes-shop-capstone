@@ -17,7 +17,9 @@ const userReducer = createSlice({
     signUpAction: (state, action) => {
       state.newUser = action.payload;
     },
-    getUserProfileAction: (state, action) => {},
+    getUserProfileAction: (state, action) => {
+      state.userProfile = action.payload;
+    },
   },
 });
 

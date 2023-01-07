@@ -1,7 +1,8 @@
-import { signInAction, signUpAction } from '~/redux/reducer/userReducer';
+import { getUserProfileAction, signInAction, signUpAction } from '~/redux/reducer/userReducer';
 import { http, saveLocalStorageJSON, setCookie, TOKEN, USER_SIGNIN } from '~/services/Utils/config';
 import { history } from '../index';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 // User signup
 export const signUpUserAPI = (user) => {
@@ -60,6 +61,41 @@ export const signInUserAPI = (userAccount) => {
         showConfirmButton: false,
         timer: 1500,
       });
+    }
+  };
+};
+// Get profile user
+export const getUserProfileAPI = () => {
+  return async (dispatch) => {
+    try {
+      let res = await http.post('/api/Users/getProfile');
+      let data = res.data.content;
+      const action = getUserProfileAction(data);
+      dispatch(action);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// Update profile
+export const updateProfileAPI = (newUser) => {
+  return async (dispatch) => {
+    try {
+      let res = await http.post('/api/Users/updateProfile', newUser);
+      if (res.status === 200) {
+        toast.success('Update user successfully', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
