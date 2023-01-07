@@ -100,7 +100,7 @@ const ProfileMain = () => {
             Order History
           </h1>
         </div>
-        <OrderHistory />
+        <OrderHistory userProfile={userProfile} />
         <div className="flex items-center justify-center mt-5">
           <Paginattion />
         </div>

@@ -99,3 +99,28 @@ export const updateProfileAPI = (newUser) => {
     }
   };
 };
+// delete order product
+export const deleteOrderAPI = (idOrder) => {
+  return async (dispatch) => {
+    try {
+      let res = await http.post('/api/Users/deleteOrder', idOrder);
+      if (res.status === 200) {
+        toast.success('Delete order successfully', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
