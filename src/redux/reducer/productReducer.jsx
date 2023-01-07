@@ -6,6 +6,7 @@ const initialState = {
   favouriteProductList: [],
   searchProductList: [],
   categoryList: [],
+  productByCategory: [],
   storeList: [],
 };
 
@@ -25,7 +26,9 @@ const productReducer = createSlice({
     getAllCategoryAction: (state, action) => {
       state.categoryList = action.payload;
     },
-    getProductByCategoryAction: (state, action) => {},
+    getProductByCategoryAction: (state, action) => {
+      state.productByCategory = action.payload;
+    },
     getAllStoreAction: (state, action) => {
       state.storeList = action.payload;
     },

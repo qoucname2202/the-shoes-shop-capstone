@@ -15,6 +15,7 @@ export const {
   setCookie,
   getCookie,
   eraseCookie,
+  calcAmount,
 } = {
   saveStorage: (name, data) => {
     localStorage.setItem(name, data);
@@ -56,6 +57,11 @@ export const {
   },
   eraseCookie: (name) => {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  },
+  calcAmount: (cartList) => {
+    return cartList.reduce((total, item, idx) => {
+      return (total += item.quantity);
+    }, 0);
   },
 };
 

@@ -6,9 +6,10 @@ import { LOGO } from '~/constants/Image';
 import { SearchIcon } from '~/components/Icons';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { clearStore, eraseCookie, TOKEN, USER_SIGNIN } from '~/services/Utils/config';
+import { calcAmount, clearStore, eraseCookie, TOKEN, USER_SIGNIN } from '~/services/Utils/config';
 const Header = () => {
   const [isShow, setIsShow] = useState(true);
+  const { cartList } = useSelector((state) => state.cartReducer);
   const { userSignIn } = useSelector((state) => state.userReducer);
   const handleSignOut = () => {
     clearStore(USER_SIGNIN);
@@ -43,22 +44,22 @@ const Header = () => {
                   </div>
                 </div>
               </form>
-              <a href="#link" className="relative mr-6 text-center text-black transition hover:text-primary">
+              <NavLink to={'/favourite'} className="relative mr-6 text-center text-black transition hover:text-primary">
                 <div className="text-2xl">
                   <FontAwesomeIcon icon={faHeart} className="text-white" />
                 </div>
                 <div className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-600 rounded-full -right-3 -top-1">
                   2
                 </div>
-              </a>
-              <a href="#link" className="relative mr-6 text-center text-white transition hover:text-primary">
+              </NavLink>
+              <NavLink to={'/cart'} className="relative mr-6 text-center text-white transition hover:text-primary">
                 <div className="text-2xl">
                   <FontAwesomeIcon icon={faBagShopping} />
                 </div>
                 <div className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-600 rounded-full -right-3 -top-1">
-                  12
+                  {calcAmount(cartList)}
                 </div>
-              </a>
+              </NavLink>
               <div className="relative">
                 <div className="flex items-center">
                   <img

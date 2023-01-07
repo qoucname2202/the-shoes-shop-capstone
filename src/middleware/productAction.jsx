@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   getAllCategoryAction,
   getAllStoreAction,
+  getProductByCategoryAction,
   getProductDetailAction,
   getProductListAction,
 } from '~/redux/reducer/productReducer';
@@ -46,6 +47,23 @@ export const getAllCategoriesAPI = () => {
       }).then((res) => {
         const data = res.data.content;
         const action = getAllCategoryAction(data);
+        dispatch(action);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// Get product by category
+export const getProductByCategoryAPI = (idCategory) => {
+  return async (dispatch) => {
+    try {
+      await axios({
+        url: `https://shop.cyberlearn.vn/api/Product/getProductByCategory?categoryId=${idCategory}`,
+        method: 'GET',
+      }).then((res) => {
+        const data = res.data.content;
+        const action = getProductByCategoryAction(data);
         dispatch(action);
       });
     } catch (error) {

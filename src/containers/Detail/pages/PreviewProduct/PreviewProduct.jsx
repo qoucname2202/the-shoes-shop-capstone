@@ -3,26 +3,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { StarIcon } from '~/components/Icons';
 import Fancybox from '~/components/ui/Fancybox';
+import 'react-toastify/dist/ReactToastify.css';
 import './Preview.scss';
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { addProdToCartAction } from '~/redux/reducer/cartReducer';
+import { ToastContainer } from 'react-toastify';
 const PreviewProduct = (props) => {
   let product = props.productDetail;
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [sizeChange, setSizeChange] = useState('36');
   const handleChangeQuantity = (amount) => {
     if (quantity < 2 && amount === -1) {
-      return Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Số lượng đặt phải lớn hơn 1',
-        showConfirmButton: false,
-        timer: 1500,
+      return toast.error(`Quantity must be more than 1`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
       });
     }
     setQuantity(quantity + amount);
   };
   const randomStar = (min = 3, max = 6) => {
     return Math.floor(Math.random() * (max - min) + min);
+  };
+  const handleAddToCart = () => {
+    const action = addProdToCartAction({ ...product, quantity });
+    dispatch(action);
   };
   return (
     <>
@@ -103,7 +115,10 @@ const PreviewProduct = (props) => {
           </div>
           {/* Action */}
           <div className="flex items-center space-x-5">
-            <button className="flex items-center space-x-2 border border-rose-400 px-5 py-3 rounded-md hover:border hover:border-gray-600 bg-gradient-to-r from-blue-400 to-purple-600 border-none text-white">
+            <button
+              className="flex items-center space-x-2 border border-rose-400 px-5 py-3 rounded-md hover:border hover:border-gray-600 bg-gradient-to-r from-blue-400 to-purple-600 border-none text-white"
+              onClick={handleAddToCart}
+            >
               <FontAwesomeIcon icon={faShoppingCart} />
               <span>Add To Cart</span>
             </button>
@@ -113,6 +128,7 @@ const PreviewProduct = (props) => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
