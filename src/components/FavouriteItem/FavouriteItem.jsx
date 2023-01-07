@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { HeartIcon, StarIcon } from '~/components/Icons';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '~/index';
 import { likeProductAPI, unLikeProductAPI } from '~/middleware/userAction';
-const ProductItem = (props) => {
+const FavouriteItem = (props) => {
   let prod = props.prod;
   const [like, setLike] = useState(true);
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const ProductItem = (props) => {
   const randomStar = (min = 3, max = 6) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
+
   return (
     <>
       <div className="col-12 col-lg-4 animate__animated animate__zoomIn animate__delay-1s md:flex md:items-center md:justify-center flex-md-column md:mb-5 lg:flex lg:items-center lg:justify-center flex-lg-column">
@@ -31,17 +32,17 @@ const ProductItem = (props) => {
                       if (!userSignIn?.accessToken) {
                         return history.push('/login');
                       }
-                      const asyncLikeAction = likeProductAPI(prod.id);
-                      dispatch(asyncLikeAction);
-                      return setLike(false);
-                    } else {
                       const asyncUnLikeAction = unLikeProductAPI(prod.id);
                       dispatch(asyncUnLikeAction);
+                      return setLike(false);
+                    } else {
+                      const asyncLikeAction = likeProductAPI(prod.id);
+                      dispatch(asyncLikeAction);
                       return setLike(true);
                     }
                   }}
                 >
-                  {like ? <HeartIcon /> : <HeartIcon fill={'currentColor'} stroke={''} className="text-purple-600" />}
+                  {like ? <HeartIcon fill={'currentColor'} stroke={''} className="text-purple-600" /> : <HeartIcon />}
                 </button>
               </div>
               <Fancybox>
@@ -74,17 +75,19 @@ const ProductItem = (props) => {
                   </div>
                 )}
               </div>
-              <div className="flex justify-between mt-2 space-x-2 text-sm font-medium">
-                <div className="mt-1 text-2xl font-semibold text-white md:text-[15px] lg:text-2xl">{`$${prod?.price}.00`}</div>
-                <Button
-                  name="animate-button"
-                  onClick={() => {
-                    navigate(`/detail/${prod.id}`);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} className=""></FontAwesomeIcon>
-                  Buy now
-                </Button>
+              <div className="flex justify-between space-x-2 text-sm font-medium ml-auto">
+                <div className=""></div>
+                <div className="">
+                  <Button
+                    name="animate-button"
+                    onClick={() => {
+                      navigate(`/detail/${prod.id}`);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faShoppingCart} className=""></FontAwesomeIcon>
+                    Buy now
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -94,4 +97,4 @@ const ProductItem = (props) => {
   );
 };
 
-export default ProductItem;
+export default FavouriteItem;

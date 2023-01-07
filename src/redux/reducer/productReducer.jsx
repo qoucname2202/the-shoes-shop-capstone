@@ -20,7 +20,9 @@ const productReducer = createSlice({
     getProductDetailAction: (state, action) => {
       state.productDetail = action.payload;
     },
-    getFavoriteProductAction: (state, action) => {},
+    getFavoriteProductAction: (state, action) => {
+      state.favouriteProductList = action.payload;
+    },
     getSearchProductListAction: (state, action) => {},
     sortingSearchProduct: (state, action) => {},
     getAllCategoryAction: (state, action) => {

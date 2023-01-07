@@ -3,6 +3,7 @@ import { http, saveLocalStorageJSON, setCookie, TOKEN, USER_SIGNIN } from '~/ser
 import { history } from '../index';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { getFavoriteProductAction } from '~/redux/reducer/productReducer';
 
 // User signup
 export const signUpUserAPI = (user) => {
@@ -119,6 +120,39 @@ export const deleteOrderAPI = (idOrder) => {
           window.location.reload();
         }, 3000);
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// like
+export const likeProductAPI = (prodId) => {
+  return async (dispatch) => {
+    try {
+      await http.get(`api/Users/like?productId=${prodId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// unlike
+export const unLikeProductAPI = (prodId) => {
+  return async (dispatch) => {
+    try {
+      await http.get(`api/Users/unlike?productId=${prodId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// get favourite product
+export const getProductFavoriteApi = () => {
+  return async (dispatch) => {
+    try {
+      const res = await http.get('/api/Users/getproductfavorite');
+      const data = res.data.content.productsFavorite;
+      const action = getFavoriteProductAction(data);
+      dispatch(action);
     } catch (error) {
       console.log(error);
     }

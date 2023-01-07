@@ -1,13 +1,17 @@
 import React from 'react';
-import ProductItem from '../../../../components/ProductItem';
+import FavouriteItem from '~/components/FavouriteItem';
 
-const ProductFavourite = () => {
+const ProductFavourite = (props) => {
+  let arrFavouriteList = props.favouriteProductList;
+
   return (
     <>
       <div className="py-5 row">
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
+        {arrFavouriteList && arrFavouriteList.length > 0
+          ? arrFavouriteList.map((prod, idx) => {
+              return <FavouriteItem prod={prod} key={idx} />;
+            })
+          : null}
       </div>
     </>
   );

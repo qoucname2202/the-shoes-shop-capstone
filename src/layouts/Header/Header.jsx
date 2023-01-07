@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { calcAmount, clearStore, eraseCookie, TOKEN, USER_SIGNIN } from '~/services/Utils/config';
 const Header = () => {
   const [isShow, setIsShow] = useState(true);
+  const { favouriteProductList } = useSelector((state) => state.productReducer);
   const { cartList } = useSelector((state) => state.cartReducer);
   const { userSignIn } = useSelector((state) => state.userReducer);
   const handleSignOut = () => {
@@ -49,7 +50,7 @@ const Header = () => {
                   <FontAwesomeIcon icon={faHeart} className="text-white" />
                 </div>
                 <div className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-600 rounded-full -right-3 -top-1">
-                  2
+                  {favouriteProductList.length}
                 </div>
               </NavLink>
               <NavLink to={'/cart'} className="relative mr-6 text-center text-white transition hover:text-primary">

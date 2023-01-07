@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import ProductFavourite from '../ProductFavourite';
 
 const FavouriteMain = () => {
+  const { favouriteProductList } = useSelector((state) => state.productReducer);
   return (
     <div className="container py-5">
       <div className="flex items-center justify-center">
@@ -13,12 +16,12 @@ const FavouriteMain = () => {
         <span>
           Show all{' '}
           <strong className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-            0
+            {favouriteProductList.length}
           </strong>{' '}
           products
         </span>
       </div>
-      <ProductFavourite />
+      <ProductFavourite favouriteProductList={favouriteProductList} />
     </div>
   );
 };
