@@ -111,9 +111,9 @@ http.interceptors.response.use(
         clearStore(TOKEN);
         clearStore(USER_SIGNIN);
         //Chuyển hướng trang dạng f5
-        window.location.href = '/login';
+        window.location.href = '/signin';
       }
-      history.push('/login');
+      history.push('/signin');
     }
     return Promise.reject(err);
   },

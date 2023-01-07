@@ -27,18 +27,9 @@ const publicRoute = [
     path: config.routes.detail,
     component: LayoutDetailProd,
   },
-
   {
     path: config.routes.search,
     component: LayoutSearch,
-  },
-  {
-    path: config.routes.favourite,
-    component: LayoutFavouriteProd,
-  },
-  {
-    path: config.routes.forgotPass,
-    component: LayoutForgotPass,
   },
   {
     path: config.routes.notFound,
@@ -55,6 +46,14 @@ const privateRoute = [
   {
     path: config.routes.cart,
     component: LayoutCart,
+  },
+  {
+    path: config.routes.favourite,
+    component: LayoutFavouriteProd,
+  },
+  {
+    path: config.routes.forgotPass,
+    component: LayoutForgotPass,
   },
 ];
 

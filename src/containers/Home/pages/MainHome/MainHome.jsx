@@ -3,19 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '~/components/Carousel';
 import Paginattion from '~/components/Pagination/Paginattion';
 import { getProductAPI } from '~/middleware/productAction';
-import { getProductFavoriteApi } from '~/middleware/userAction';
-import ProductFeature from '../ProductFeature';
 
+import ProductFeature from '../ProductFeature';
 const MainHome = () => {
   const { productList } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     const asyncProductAction = getProductAPI();
     dispatch(asyncProductAction);
-  }, []);
-  useEffect(() => {
-    const asyncFavouriteAction = getProductFavoriteApi();
-    dispatch(asyncFavouriteAction);
   }, []);
   return (
     <Fragment>

@@ -158,3 +158,38 @@ export const getProductFavoriteApi = () => {
     }
   };
 };
+// Change passowrd
+export const changePasswordAPI = (newPass) => {
+  return async (dispatch) => {
+    try {
+      const res = await http.post('api/Users/changePassword', newPass);
+      if (res.status === 200) {
+        toast.success('Change password successfully', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        setTimeout(() => {
+          history.push('/');
+        }, 3000);
+      }
+    } catch (error) {
+      toast.error('Change password is failed', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      console.log(error);
+    }
+  };
+};

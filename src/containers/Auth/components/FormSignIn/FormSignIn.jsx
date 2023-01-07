@@ -33,26 +33,6 @@ const FormSignIn = (props) => {
         {frmForm.errors.password && frmForm.touched.password && (
           <p className="mt-2 text-xs font-semibold italic text-red-500">{frmForm.errors.password}</p>
         )}
-        <div className="text-right mt-4">
-          {/* <div className="flex items-start">
-            <div className="flex items-center h-5">
-              <input
-                id="remember"
-                aria-describedby="remember"
-                type="checkbox"
-                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-              />
-            </div>
-            <div className="ml-3 text-sm">
-              <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">
-                Remember me
-              </label>
-            </div>
-          </div> */}
-          <a href="#link" className="text-sm font-medium text-gray-400 hover:text-purple-600 dark:text-gray-400">
-            Forgot password?
-          </a>
-        </div>
         <button
           type="submit"
           className="w-full px-5 py-[15px] text-sm font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"

@@ -1,10 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductFavoriteApi } from '~/middleware/userAction';
 
 import ProductFavourite from '../ProductFavourite';
 
 const FavouriteMain = () => {
   const { favouriteProductList } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const asyncFavouriteAction = getProductFavoriteApi();
+    dispatch(asyncFavouriteAction);
+  }, []);
   return (
     <div className="container py-5">
       <div className="flex items-center justify-center">
