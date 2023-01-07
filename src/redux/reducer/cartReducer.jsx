@@ -49,11 +49,25 @@ const cartReducer = createSlice({
       }
       state.cartList = cartList;
     },
-    changeAmountProdAction: (state, action) => {},
-    deleteProductAction: (state, action) => {},
-    submitOrderProdAction: (state, action) => {},
-    clearItemCartAction: (state, action) => {},
-    calcTotalPriceAction: (state, action) => {},
+    changeAmountProdAction: (state, action) => {
+      let { amount, id } = action.payload;
+      let idxItem = state.cartList.findIndex((item) => item.id === id);
+      if (idxItem !== -1) {
+        state.cartList[idxItem].quantity += amount;
+      }
+    },
+    deleteProductAction: (state, action) => {
+      let idxItem = state.cartList.findIndex((item) => item.id === action.payload);
+      if (idxItem !== -1) {
+        state.cartList.splice(idxItem, 1);
+      }
+    },
+    submitOrderProdAction: (state, action) => {
+      console.log(action.payload);
+    },
+    clearItemCartAction: (state, action) => {
+      state.cartList = [];
+    },
   },
 });
 
@@ -63,7 +77,6 @@ export const {
   deleteProductAction,
   submitOrderProdAction,
   clearItemCartAction,
-  calcTotalPriceAction,
 } = cartReducer.actions;
 
 export default cartReducer.reducer;

@@ -16,6 +16,7 @@ export const {
   getCookie,
   eraseCookie,
   calcAmount,
+  calcSubTotal,
 } = {
   saveStorage: (name, data) => {
     localStorage.setItem(name, data);
@@ -62,6 +63,13 @@ export const {
     return cartList.reduce((total, item, idx) => {
       return (total += item.quantity);
     }, 0);
+  },
+  calcSubTotal: (cartList) => {
+    let sum = 0;
+    let totalItem = cartList.reduce((total, item, idx) => {
+      return (total += item.price * item.quantity);
+    }, 0);
+    return (sum += totalItem);
   },
 };
 

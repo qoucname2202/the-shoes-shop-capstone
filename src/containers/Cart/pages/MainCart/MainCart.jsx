@@ -1,9 +1,92 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 import Fancybox from '~/components/ui/Fancybox';
+import { history } from '~/index';
+import { orderProductAPI } from '~/middleware/cartAction';
+import { changeAmountProdAction, clearItemCartAction, deleteProductAction } from '~/redux/reducer/cartReducer';
+import { calcSubTotal } from '~/services/Utils/config';
 
 const MainCart = () => {
+  let { cartList } = useSelector((state) => state.cartReducer);
+  let { userSignIn } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const handleDelProd = (idProd) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Do you want to delete product?',
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const action = deleteProductAction(idProd);
+        dispatch(action);
+        Swal.fire('Delete product successfully!', '', 'success');
+      }
+    });
+  };
+  const handleChangeAmount = (isNumb, idProd) => {
+    const action = changeAmountProdAction({
+      amount: isNumb,
+      id: idProd,
+    });
+    dispatch(action);
+  };
+  const handleClearItemCart = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Do you want to delete all  product?',
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const action = clearItemCartAction();
+        dispatch(action);
+        Swal.fire('Delete all product successfully!', '', 'success');
+      }
+    });
+  };
+  const handelCheckout = () => {
+    let order = {
+      orderDetail: [],
+      email: userSignIn.email,
+    };
+    cartList.forEach((prodItem) => {
+      let product = {
+        productId: prodItem.id,
+        quantity: prodItem.quantity,
+      };
+      order.orderDetail = [...order.orderDetail, product];
+    });
+    if (order.orderDetail.length !== 0) {
+      const asyncOrderAction = orderProductAPI(order);
+      dispatch(asyncOrderAction);
+      setTimeout(() => {
+        const action = clearItemCartAction();
+        dispatch(action);
+      }, 3000);
+    } else {
+      toast.error('Vui lòng chọn sản phẩm', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setTimeout(() => {
+        history.push('/');
+      }, 3000);
+    }
+  };
   return (
     <div className="">
       <div className="container mx-auto mt-10">
@@ -11,6 +94,15 @@ const MainCart = () => {
           <div className="w-3/4 px-10 py-10 bg-white">
             <div className="flex justify-between pb-8 border-b">
               <h1 className="text-2xl font-semibold">Shopping Cart</h1>
+              <button
+                type="button"
+                className="text-gray-700 bg-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-md text-sm px-2.5 py-2 text-center inline-flex items-center dark:bg-white dark:hover:bg-white dark:focus:ring-white border-2 border-gray-300"
+                onClick={() => {
+                  handleClearItemCart();
+                }}
+              >
+                Clear all
+              </button>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="w-2/5 text-xs font-semibold text-gray-600 uppercase">Product Details</h3>
@@ -19,65 +111,89 @@ const MainCart = () => {
               <h3 className="w-[15%] text-xs font-semibold text-center text-gray-600 uppercase">Total</h3>
               <h3 className="w-[15%] text-xs font-semibold text-center text-gray-600 uppercase">Action</h3>
             </div>
-            <div className="flex items-center px-6 py-5 -mx-8 hover:bg-gray-100">
-              <div className="flex items-center w-2/5">
-                <div className="w-24">
-                  <Fancybox>
-                    <a
-                      data-fancybox="gallery"
-                      href="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
-                      data-caption="Adidas Prophere Black White"
-                    >
-                      <img
-                        src="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
-                        alt="addias"
-                        className="object-fill w-full"
-                      />
-                    </a>
-                  </Fancybox>
-                </div>
-                <div className="flex flex-col flex-grow ml-4">
-                  <span className="text-sm font-bold">Adidas Prophere Black White</span>
-                  <span className="mt-2 text-xs text-purple-500 ">Nike</span>
-                </div>
-              </div>
-              <div className="flex items-center w-[15%]">
-                <div className="w-32 h-10 custom-number-input">
-                  <div className="relative flex flex-row w-full h-10 mt-1 bg-transparent rounded-lg">
-                    <button
-                      data-action="decrement"
-                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer hover:text-gray-700 hover:bg-gray-400"
-                    >
-                      <span className="m-auto text-2xl font-thin">−</span>
-                    </button>
-                    <input
-                      className="flex items-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-gray-600 focus:text-gray-600 md:text-basecursor-default"
-                      name="custom-input-number"
-                      defaultValue={1}
-                    />
-                    <button
-                      data-action="increment"
-                      className="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400"
-                    >
-                      <span className="m-auto text-2xl font-thin">+</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <span className="w-[15%] text-base font-semibold text-center">$400.00</span>
-              <span className="w-[15%] text-base font-semibold text-center">$400.00</span>
-              <div className="w-[15%] flex justify-center items-center gap-2">
-                <button className="flex items-center px-2.5 py-2 space-x-2 text-white bg-red-400 rounded-md border:none ">
-                  <FontAwesomeIcon icon={faHeart} className="text-xl" />
-                </button>
-                <button
-                  type="button"
-                  className="text-gray-700 bg-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-md text-sm px-2.5 py-2 text-center inline-flex items-center dark:bg-white dark:hover:bg-white dark:focus:ring-white border-2 border-gray-300"
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
+            {cartList && cartList?.length > 0
+              ? cartList?.map((item, idx) => {
+                  return (
+                    <div className="flex items-center px-6 py-5 -mx-8 hover:bg-gray-100" key={idx}>
+                      <div className="flex items-center w-2/5">
+                        <div className="w-24">
+                          <Fancybox>
+                            <a data-fancybox="gallery" href={item?.image} data-caption="Adidas Prophere Black White">
+                              <img src={item?.image} alt={item?.alias} className="object-fill w-full" />
+                            </a>
+                          </Fancybox>
+                        </div>
+                        <div className="flex flex-col flex-grow ml-4">
+                          <span className="text-sm font-bold">{item?.name}</span>
+                          <span className="mt-2 text-xs text-purple-500 ">{item?.name.split(' ')[0]}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center w-[15%]">
+                        <div className="w-32 h-10 custom-number-input">
+                          <div className="relative flex items-center flex-row w-full h-10 mt-1 bg-transparent rounded-lg">
+                            <button
+                              data-action="decrement"
+                              className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer hover:text-gray-700 hover:bg-gray-400"
+                              onClick={() => {
+                                if (item?.quantity <= 1) {
+                                  Swal.fire({
+                                    icon: 'error',
+                                    title: 'Do you want to delete product?',
+                                    showDenyButton: false,
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Delete',
+                                  }).then((result) => {
+                                    if (result.isConfirmed) {
+                                      const action = deleteProductAction(item.id);
+                                      dispatch(action);
+                                      Swal.fire('Delete product successfully!', '', 'success');
+                                    }
+                                  });
+                                } else {
+                                  handleChangeAmount(-1, item.id);
+                                }
+                              }}
+                            >
+                              <span className="m-auto text-2xl font-thin">−</span>
+                            </button>
+                            <span className="text-gray-700 px-3 bg-gray-300 outline-none focus:outline-none text-md hover:text-gray-600 focus:text-gray-600 py-2">
+                              {item?.quantity}
+                            </span>
+                            <button
+                              data-action="increment"
+                              className="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400"
+                              onClick={() => {
+                                handleChangeAmount(1, item.id);
+                              }}
+                            >
+                              <span className="m-auto text-2xl font-thin">+</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <span className="w-[15%] text-base font-semibold text-center">{`$${item?.price}.00`}</span>
+                      <span className="w-[15%] text-base font-semibold text-center">{`$${
+                        item?.price * item?.quantity
+                      }.00`}</span>
+                      <div className="w-[15%] flex justify-center items-center gap-2">
+                        <button className="flex items-center px-2.5 py-2 space-x-2 text-white bg-red-400 rounded-md border:none ">
+                          <FontAwesomeIcon icon={faHeart} className="text-xl" />
+                        </button>
+                        <button
+                          type="button"
+                          className="text-gray-700 bg-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-md text-sm px-2.5 py-2 text-center inline-flex items-center dark:bg-white dark:hover:bg-white dark:focus:ring-white border-2 border-gray-300"
+                          onClick={() => {
+                            handleDelProd(item.id);
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+
             <div className="flex items-center justify-between pt-6 mt-6 border-t">
               <div className="flex items-center">
                 <svg className="w-4 mr-2 text-indigo-600 fill-current" viewBox="0 0 448 512">
@@ -92,7 +208,7 @@ const MainCart = () => {
               </div>
               <div className="flex items-end justify-center">
                 <span className="mr-1 text-sm font-medium text-gray-400">Subtotal:</span>
-                <span className="text-xl font-bold text-gray-800 ">$400.00</span>
+                <span className="text-xl font-bold text-gray-800 ">{`$${calcSubTotal(cartList)}.00`}</span>
               </div>
             </div>
           </div>
@@ -101,9 +217,14 @@ const MainCart = () => {
             <div className="">
               <div className="flex justify-between py-6">
                 <span className="text-xl font-medium text-gray-400">Total Cost:</span>
-                <span className="text-lg font-semibold">$600</span>
+                <span className="text-lg font-semibold">{`$${calcSubTotal(cartList)}.00`}</span>
               </div>
-              <button className="inline-flex justify-center items-center gap-2 w-full py-2.5 mb-2 font-medium tracking-wider text-white transition duration-300 ease-in border-2 focus:outline-none text-center bg-gradient-to-r from-blue-400 to-purple-600 hover:from-purple-500 hover:to-pink-500 border-none">
+              <button
+                className="inline-flex justify-center items-center gap-2 w-full py-2.5 mb-2 font-medium tracking-wider text-white transition duration-300 ease-in border-2 focus:outline-none text-center bg-gradient-to-r from-blue-400 to-purple-600 hover:from-purple-500 hover:to-pink-500 border-none"
+                onClick={() => {
+                  handelCheckout();
+                }}
+              >
                 Checkout
               </button>
             </div>
@@ -190,6 +311,7 @@ const MainCart = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
