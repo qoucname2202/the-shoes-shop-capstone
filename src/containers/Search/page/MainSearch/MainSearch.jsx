@@ -1,26 +1,57 @@
 import { faMagnifyingGlass, faUpLong, faDownLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { getSearchProductAPI } from '~/middleware/productAction';
+import { sortingSearchProduct } from '~/redux/reducer/productReducer';
 import ProductSearch from '../ProductSearch';
 import './Search.scss';
 const MainSearch = () => {
+  const [searchParam, setSearchParam] = useSearchParams();
+  const { searchProductList } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+  const keyword = searchParam.get('key');
+  const frmFormSearch = useFormik({
+    initialValues: {
+      keyword: '',
+    },
+    onSubmit: (values) => {
+      setSearchParam({
+        key: values.keyword,
+      });
+    },
+  });
+  useEffect(() => {
+    const asyncGetProduct = getSearchProductAPI(keyword);
+    dispatch(asyncGetProduct);
+  }, [keyword]);
+  // Handel sorting
+  const handleSortingProduct = (keySort) => {
+    const action = sortingSearchProduct(keySort);
+    dispatch(action);
+  };
   return (
     <div className="container py-5">
       <div className="mt-3 row">
         <div className="col-3"></div>
         <div className="col-6">
-          <form className="flex items-center">
+          <form className="flex items-center" onSubmit={frmFormSearch.handleSubmit}>
             <label htmlFor="simple-search" className="sr-only">
               Search
             </label>
             <div className="relative w-full">
               <input
                 type="text"
-                id="search"
+                id="keyword"
+                name="keyword"
                 className="block w-full p-3 text-sm text-gray-700 bg-gray-300 rounded-xl pl-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                 placeholder="Search"
                 autoComplete="off"
                 autoFocus
+                onChange={frmFormSearch.handleChange}
+                onBlur={frmFormSearch.handleBlur}
               />
             </div>
             <button
@@ -43,7 +74,7 @@ const MainSearch = () => {
         <span>
           Show all{' '}
           <strong className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-            0
+            {searchProductList?.length}
           </strong>{' '}
           products
         </span>
@@ -60,13 +91,25 @@ const MainSearch = () => {
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li>
-              <a className="flex items-center gap-2 dropdown-item" href="#link">
+              <a
+                className="flex items-center gap-2 dropdown-item"
+                href="#link"
+                onClick={() => {
+                  handleSortingProduct('asc');
+                }}
+              >
                 <FontAwesomeIcon icon={faUpLong} />
                 Ascending
               </a>
             </li>
             <li>
-              <a className="flex items-center gap-2 dropdown-item" href="#link">
+              <a
+                className="flex items-center gap-2 dropdown-item"
+                href="#link"
+                onClick={() => {
+                  handleSortingProduct('desc');
+                }}
+              >
                 <FontAwesomeIcon icon={faDownLong} />
                 Decrease
               </a>
@@ -74,7 +117,7 @@ const MainSearch = () => {
           </ul>
         </div>
       </div>
-      <ProductSearch />
+      <ProductSearch searchProductList={searchProductList} />
     </div>
   );
 };

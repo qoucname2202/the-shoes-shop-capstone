@@ -5,6 +5,7 @@ import {
   getProductByCategoryAction,
   getProductDetailAction,
   getProductListAction,
+  getSearchProductListAction,
 } from '~/redux/reducer/productReducer';
 import { http } from '~/services/Utils/config';
 // Get Product
@@ -54,6 +55,24 @@ export const getAllCategoriesAPI = () => {
     }
   };
 };
+// Get produc by keyword
+export const getSearchProductAPI = (keyword) => {
+  return async (dispatch) => {
+    try {
+      await axios({
+        url: `https://shop.cyberlearn.vn/api/Product?keyword=${keyword}`,
+        method: 'GET',
+      }).then((res) => {
+        const data = res.data.content;
+        const action = getSearchProductListAction(data);
+        dispatch(action);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 // Get product by category
 export const getProductByCategoryAPI = (idCategory) => {
   return async (dispatch) => {

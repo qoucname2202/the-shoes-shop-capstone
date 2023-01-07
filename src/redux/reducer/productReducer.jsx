@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import _ from 'lodash';
 const initialState = {
   productList: [],
   productDetail: null,
@@ -23,8 +23,14 @@ const productReducer = createSlice({
     getFavoriteProductAction: (state, action) => {
       state.favouriteProductList = action.payload;
     },
-    getSearchProductListAction: (state, action) => {},
-    sortingSearchProduct: (state, action) => {},
+    getSearchProductListAction: (state, action) => {
+      state.searchProductList = action.payload;
+    },
+    sortingSearchProduct: (state, action) => {
+      let sortedListResult = [...state.searchProductList];
+      sortedListResult = _.orderBy(sortedListResult, ['price'], [action.payload]);
+      state.searchProductList = sortedListResult;
+    },
     getAllCategoryAction: (state, action) => {
       state.categoryList = action.payload;
     },
